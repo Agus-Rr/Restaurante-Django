@@ -11,7 +11,14 @@
         <li>
             <p>
                 Plato ID: {{plato.id}} <br>
-                Nombre: {{plato.nombre}}
+                Nombre: {{plato.nombre}}<br>
+                Precio: {{plato.precio}} <br>
+                <a href=" {% url 'editarPlato' plato.id %} ">
+                    <button>Editar Plato</button>
+                </a>
+                <a href=" {% url 'borrarPlato' plato.id %} ">
+                    <button>Borrar Plato</button>
+                </a>
             </p>
         </li>
         {% endfor %}

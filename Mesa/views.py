@@ -37,3 +37,30 @@ def listaMesas(request):
 
     return render(request, 'Mesa/listaMesas.html', contexto)
 
+def editarMesa(request, id):
+    mesaEditar = Mesa.objects.get(pk=id)
+
+    if request.method == 'GET':
+        formEditar = mesaForm(instance=mesaEditar)
+
+        contextoGet = {
+            'form' : formEditar,
+            'mensaje' : 'Editar mesa'
+        }
+
+        return render(request, 'Mesa/formMesa.html', contextoGet)
+    
+    else:
+        formGuardar = mesaForm(request.POST, instance=mesaEditar)
+
+        if formGuardar.is_valid():
+            formGuardar.save()
+            return redirect('listaMesas')
+        else:
+            return render(request, 'Mesa/formMesa.html',
+            {'form':formEditar, 'mensaje':'Error - Editar mesa'})
+        
+def borrarMesa(request, id):
+    mesaBorrar = Mesa.objects.get(pk=id)
+    mesaBorrar.delete()
+    return redirect('listaMesas')

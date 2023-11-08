@@ -38,3 +38,31 @@ def listaOrdenes(request):
     }
 
     return render(request, 'Orden/listaOrdenes.html', contexto)
+
+def editarOrden(request, id):
+    ordenEditar = Orden.objects.get(pk=id)
+
+    if request.method == 'GET':
+        formEditar = ordenForm(instance=ordenEditar)
+
+        contextoGet = {
+            'form' : formEditar,
+            'mensaje' : 'Editar orden'
+        }
+
+        return render(request, 'Orden/formOrden.html', contextoGet)
+    
+    else:
+        formGuardar = ordenForm(request.POST, instance=ordenEditar)
+
+        if formGuardar.is_valid():
+            formGuardar.save()
+            return redirect('listaOrdenes')
+        else:
+            return render(request, 'Orden/formOrden.html',
+            {'form':formEditar, 'mensaje':'Error - Editar orden'})
+        
+def borrarOrden(request, id):
+    ordenBorrar = Orden.objects.get(pk=id)
+    ordenBorrar.delete()
+    return redirect('listaOrdenes')

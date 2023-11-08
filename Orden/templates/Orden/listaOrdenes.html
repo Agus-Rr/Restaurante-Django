@@ -11,18 +11,24 @@
         <li>
             <p>
                 Orden ID: {{orden.id}} <br>
-                Precio: {{orden.precio}} <br>
                 Mesa: {{orden.mesa}} <br>
-                Platos:
-                <ul>
-                    {% for p in orden.plato %}
-                        <li>
-                            {{p}}
-                        </li>
+                Platos: <ul> {% for plato in orden.plato.all %}
+                    <li>
+                        <p>{{plato}}</p>
+                    </li>
                     {% endfor %}
+                </ul>
+                <a href=" {% url 'editarOrden' orden.id %} ">
+                    <button>Editar Orden</button>
+                </a>
+                <br><br>
+                <a href=" {% url 'borrarOrden' orden.id %} ">
+                    <button>Borrar Orden</button>
+                </a>
                 </ul>
             </p>
         </li>
+        <hr>
         {% endfor %}
     </ul>
 </body>

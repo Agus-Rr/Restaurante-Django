@@ -4,6 +4,10 @@ from django.db import models
 
 class Mesa(models.Model):
 
-    numeroMesa = models.IntegerField()
+    cantCubiertos = models.IntegerField()
 
     #estado = models.BooleanField(default=False)
+    #ubicacion = models.CharField(max_length=50)
+
+    def __str__(self):
+        return str(self.cantCubiertos)

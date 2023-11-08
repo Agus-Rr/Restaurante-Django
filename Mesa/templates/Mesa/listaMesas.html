@@ -10,9 +10,15 @@
         {% for mesa in mesas %}
         <li>
             <p>
-                Mesa ID: {{mesa.id}} <br>
-                Numero de Mesa: {{mesa.numeroMesa}} 
+                Numero de mesa: {{mesa.id}} <br>
+                Cantidad de cubiertos: {{mesa.cantCubiertos}} 
             </p>
+            <a href=" {% url 'editarMesa' mesa.id %} ">
+                <button>Editar Mesa</button>
+            </a>
+            <a href=" {% url 'borrarMesa' mesa.id %} ">
+                <button>Borrar Mesa</button>
+            </a>
         </li>
         {% endfor %}
     </ul>
