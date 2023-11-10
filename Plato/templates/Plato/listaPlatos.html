@@ -6,7 +6,11 @@
     <title>Lista de Platos</title>
 </head>
 <body>
+    <a href="{%url 'platoNuevo'%}">
+        <button>Crear Nuevo Plato</button>
+    </a>
     <ul>
+
         {% for plato in platos %}
         <li>
             <p>

@@ -6,7 +6,7 @@ from Plato.models import Plato
 # Create your views here.
 
 def ordenHome(request):
-    return render(request, 'Orden/orden.html')
+    return render(request, 'Orden/homeOrdenes.html')
 
 def ordenNueva(request):
     formNuevo = ordenForm

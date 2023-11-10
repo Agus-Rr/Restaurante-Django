@@ -6,6 +6,9 @@
     <title>Lista de Mesas</title>
 </head>
 <body>
+    <a href="{%url 'mesaNueva'%}">
+        <button>Crear Nueva Mesa|</button>
+    </a>
     <ul>
         {% for mesa in mesas %}
         <li>

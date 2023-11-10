@@ -5,7 +5,7 @@ from .models import Mesa
 # Create your views here.
 
 def mesaHome(request):
-    return render(request, 'Mesa/mesa.html')
+    return render(request, 'Mesa/homeMesas.html')
 
 def mesaNueva(request):
     formNuevo = mesaForm

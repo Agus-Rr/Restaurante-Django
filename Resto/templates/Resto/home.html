@@ -7,6 +7,16 @@
 </head>
 <body>
     <h1>Bienvenido al Sistema de Restaurante</h1>
+
+    <a href=" {% url 'homeMesa' %} ">
+        <button>Homepage de Mesas</button>
+    </a>
     
+    <a href=" {% url 'homeOrdenes' %} ">
+        <button>Homepage de Ordenes</button>
+    </a>
+    <a href="{%url 'homePlatos' %}">
+        <button>Homepage de Platos</button>
+    </a>
 </body>
 </html>

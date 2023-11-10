@@ -6,6 +6,9 @@
     <title>Lista de Ordenes</title>
 </head>
 <body>
+    <a href="{%url 'ordenNueva'%}">
+        <button>Crear Nueva orden</button>
+    </a>
     <ul>
         {% for orden in ordenes %}
         <li>

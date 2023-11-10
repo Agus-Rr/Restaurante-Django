@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('homeOrdenes', views.ordenHome, name='ordenHome'),
+    path('homeOrdenes', views.ordenHome, name='homeOrdenes'),
     path('ordenNueva', views.ordenNueva, name='ordenNueva'),
     path('listaOrdenes', views.listaOrdenes, name='listaOrdenes'),
     path('editarOrden/<int:id>', views.editarOrden, name='editarOrden'),

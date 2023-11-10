@@ -5,7 +5,7 @@ from .models import Plato
 # Create your views here.
 
 def platoHome(request):
-    return render(request, 'Plato/plato.html')
+    return render(request, 'Plato/homePlatos.html')
 
 def platoNuevo(request):
     formNuevo = platoForm
