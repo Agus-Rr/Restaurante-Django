@@ -20,12 +20,18 @@
                 <a href=" {% url 'editarPlato' plato.id %} ">
                     <button>Editar Plato</button>
                 </a>
-                <a href=" {% url 'borrarPlato' plato.id %} ">
+                <a href=" {% url 'borrarPlato' plato.id %} "onclick="return mostrarAlerta()">
                     <button>Borrar Plato</button>
                 </a>
+                
             </p>
         </li>
         {% endfor %}
     </ul>
+    <script>
+        function mostrarAlerta(){
+            return confirm("¿estas seguro que queres borrar la orden?")
+        }
+    </script>
 </body>
 </html>

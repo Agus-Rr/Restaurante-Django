@@ -30,11 +30,13 @@ def ordenNueva(request):
         return render(request, 'Orden/formOrden.html', contexto)
     
 def listaOrdenes(request):
-    ordenes = Orden.objects.all()
+    ordenes = Orden.objects.filter(estado=False)
+    ordenCompleto = Orden.objects.filter(estado=True)
 
     contexto = {
         'titulo':'Lista de Ordenes',
         'ordenes':ordenes,
+        'ordenCompleto' :ordenCompleto,
     }
 
     return render(request, 'Orden/listaOrdenes.html', contexto)
@@ -66,3 +68,15 @@ def borrarOrden(request, id):
     ordenBorrar = Orden.objects.get(pk=id)
     ordenBorrar.delete()
     return redirect('listaOrdenes')
+
+def estadoOrden(request, id):
+    ordenEstado = Orden.objects.get(pk=id)
+    
+    if ordenEstado.estado == False:
+        ordenEstado.estado = True
+        ordenEstado.save()
+    elif ordenEstado.estado == True:
+        ordenEstado.estado = False
+        ordenEstado.save()
+    return redirect('listaOrdenes')
+    

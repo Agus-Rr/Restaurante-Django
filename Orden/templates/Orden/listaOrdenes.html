@@ -25,6 +25,35 @@
                     <button>Editar Orden</button>
                 </a>
                 <br><br>
+                <a href=" {% url 'borrarOrden' orden.id %}"onclick="return mostrarAlerta()">
+                    <button>Borrar Orden</button>
+                </a>
+                <a href="{%url 'ordenEstado' orden.id%}">
+                    <button>Completar Orden</button>
+                </a>
+                </ul>
+            </p>
+        </li>
+        <hr>
+        {% endfor %}
+    </ul>
+    <ul>
+        <h2>Ordenes Completadas</h2>
+        {% for orden in ordenCompleto %}
+        <li>
+            <p>
+                Orden ID: {{orden.id}} <br>
+                Mesa: {{orden.mesa}} <br>
+                Platos: <ul> {% for plato in orden.plato.all %}
+                    <li>
+                        <p>{{plato}}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <a href=" {% url 'editarOrden' orden.id %} ">
+                    <button>Editar Orden</button>
+                </a>
+                <br><br>
                 <a href=" {% url 'borrarOrden' orden.id %} ">
                     <button>Borrar Orden</button>
                 </a>
@@ -34,5 +63,10 @@
         <hr>
         {% endfor %}
     </ul>
+    <script>
+        function mostrarAlerta(){
+            return confirm("¿estas seguro que queres borrar la orden?")
+        }
+    </script>
 </body>
 </html>
