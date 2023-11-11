@@ -72,8 +72,14 @@ def borrarOrden(request, id):
 def estadoOrden(request, id):
     ordenEstado = Orden.objects.get(pk=id)
     
+    
     if ordenEstado.estado == False:
         ordenEstado.estado = True
+        total = 0
+        platos = ordenEstado.plato.all()
+        for p in platos:
+            total += p.precio
+            ordenEstado.precioTotal = total
         ordenEstado.save()
     elif ordenEstado.estado == True:
         ordenEstado.estado = False

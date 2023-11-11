@@ -50,6 +50,7 @@
                     </li>
                     {% endfor %}
                 </ul>
+                Total:{{orden.precioTotal}} <br>
                 <a href=" {% url 'editarOrden' orden.id %} ">
                     <button>Editar Orden</button>
                 </a>

@@ -12,4 +12,4 @@ class Orden(models.Model):
 
     estado = models.BooleanField(default=False)
 
-    precioTotal = models.IntegerField(max_length=10)
+    precioTotal = models.IntegerField()

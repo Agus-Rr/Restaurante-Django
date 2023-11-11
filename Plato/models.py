@@ -6,7 +6,7 @@ class Plato(models.Model):
     
     nombre = models.CharField(max_length=50)
 
-    precio = models.IntegerField(max_length=10)
+    precio = models.IntegerField()
 
 
     def __str__(self):
