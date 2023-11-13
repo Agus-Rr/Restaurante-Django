@@ -10,6 +10,7 @@
         <button>Crear Nueva orden</button>
     </a>
     <ul>
+        <h2>Ordenes en curso</h2>
         {% for orden in ordenes %}
         <li>
             <p>
@@ -57,6 +58,10 @@
                 <br><br>
                 <a href=" {% url 'borrarOrden' orden.id %} ">
                     <button>Borrar Orden</button>
+                </a>
+                <br>
+                <a href="{%url 'ordenEstado' orden.id%}">
+                    <button>Reabrir Orden</button>
                 </a>
                 </ul>
             </p>

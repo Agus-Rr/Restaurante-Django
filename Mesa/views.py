@@ -28,11 +28,13 @@ def mesaNueva(request):
         return render(request, 'Mesa/formMesa.html', contexto)
     
 def listaMesas(request):
-    mesas = Mesa.objects.all()
+    mesas = Mesa.objects.filter(disponible=True)
+    mesasOcupadas = Mesa.objects.filter(disponible=False)
 
     contexto = {
         'titulo':'Lista de Mesas',
-        'mesas':mesas
+        'mesas':mesas,
+        'mesasOcupadas':mesasOcupadas
     }
 
     return render(request, 'Mesa/listaMesas.html', contexto)

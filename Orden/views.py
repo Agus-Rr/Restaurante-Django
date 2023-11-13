@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import ordenForm
 from .models import Orden
 from Plato.models import Plato
+from Mesa.models import Mesa
 
 # Create your views here.
 
@@ -71,18 +72,25 @@ def borrarOrden(request, id):
 
 def estadoOrden(request, id):
     ordenEstado = Orden.objects.get(pk=id)
+    mesaOrden = Mesa.objects.get(pk = ordenEstado.mesa.id)
     
     
     if ordenEstado.estado == False:
         ordenEstado.estado = True
+        mesaOrden.disponible = True
+        print(ordenEstado.mesa.disponible)
         total = 0
         platos = ordenEstado.plato.all()
         for p in platos:
             total += p.precio
             ordenEstado.precioTotal = total
         ordenEstado.save()
+        mesaOrden.save()
     elif ordenEstado.estado == True:
         ordenEstado.estado = False
+        mesaOrden.disponible = False
+        print(ordenEstado.mesa.disponible)
         ordenEstado.save()
+        mesaOrden.save()
     return redirect('listaOrdenes')
     

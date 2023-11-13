@@ -7,14 +7,34 @@
 </head>
 <body>
     <a href="{%url 'mesaNueva'%}">
-        <button>Crear Nueva Mesa|</button>
+        <button>Crear Nueva Mesa</button>
     </a>
     <ul>
+        <h2>Mesas Disponibles</h2>
         {% for mesa in mesas %}
         <li>
             <p>
                 Numero de mesa: {{mesa.id}} <br>
-                Cantidad de cubiertos: {{mesa.cantCubiertos}} 
+                Cantidad de cubiertos: {{mesa.cantCubiertos}} <br>
+                Disponible: {{mesa.disponible}}
+            </p>
+            <a href=" {% url 'editarMesa' mesa.id %} ">
+                <button>Editar Mesa</button>
+            </a>
+            <a href=" {% url 'borrarMesa' mesa.id %} "onclick="return mostrarAlerta()">
+                <button>Borrar Mesa</button>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    <ul>
+        <h2>Mesas Ocupadas</h2>
+        {% for mesa in mesasOcupadas %}
+        <li>
+            <p>
+                Numero de mesa: {{mesa.id}} <br>
+                Cantidad de cubiertos: {{mesa.cantCubiertos}} <br>
+                Disponible: {{mesa.disponible}}
             </p>
             <a href=" {% url 'editarMesa' mesa.id %} ">
                 <button>Editar Mesa</button>
@@ -27,7 +47,7 @@
     </ul>
     <script>
         function mostrarAlerta(){
-            return confirm("¿estas seguro que queres borrar la orden?")
+            return confirm("¿estas seguro que queres borrar la mesa?")
         }
     </script>
 </body>

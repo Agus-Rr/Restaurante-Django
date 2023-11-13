@@ -6,7 +6,7 @@ class Mesa(models.Model):
 
     cantCubiertos = models.IntegerField()
 
-    disponible = models.BooleanField(default=False)
+    disponible = models.BooleanField(default=True)
     #ubicacion = models.CharField(max_length=50)
 
     def __str__(self):
