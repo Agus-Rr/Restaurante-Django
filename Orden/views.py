@@ -23,6 +23,10 @@ def ordenNueva(request):
         if formPOST.is_valid():
             print(request.POST)
             formPOST.save()
+            mesa_id = request.POST.get('mesa')  
+            mesa = Mesa.objects.get(id=mesa_id)
+            mesa.disponible = False
+            mesa.save()
             return redirect('listaOrdenes')
         else:
             contexto['mensaje']+='Error en el formulario'
@@ -67,6 +71,9 @@ def editarOrden(request, id):
         
 def borrarOrden(request, id):
     ordenBorrar = Orden.objects.get(pk=id)
+    mesaOrden = Mesa.objects.get(pk = ordenBorrar.mesa.id)
+    mesaOrden.disponible = True
+    mesaOrden.save()
     ordenBorrar.delete()
     return redirect('listaOrdenes')
 
