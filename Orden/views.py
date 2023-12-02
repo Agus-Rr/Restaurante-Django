@@ -11,10 +11,12 @@ def ordenHome(request):
 
 def ordenNueva(request):
     formNuevo = ordenForm
+    mesasDisponibles = Mesa.objects.filter(disponible = True).exists()
 
     contexto = {
         'form': formNuevo,
-        'mensaje':'Crear Orden'
+        'mensaje':'Crear Orden',
+        'mesasDisponibles' : mesasDisponibles
     }
 
     if request.method == 'POST':
@@ -32,6 +34,14 @@ def ordenNueva(request):
             contexto['mensaje']+='Error en el formulario'
             contexto['form'] = formPOST
     else:
+        formNuevo = ordenForm()
+        if not mesasDisponibles:
+            formNuevo.fields['mesa'].widget.attrs['disabled'] = True
+            contexto = { 
+                'form': formNuevo,
+                'mensaje':'No hay mesas disponibles',
+                'mesasDisponibles' : mesasDisponibles
+            }
         return render(request, 'Orden/formOrden.html', contexto)
     
 def listaOrdenes(request):
@@ -93,7 +103,7 @@ def estadoOrden(request, id):
             ordenEstado.precioTotal = total
         ordenEstado.save()
         mesaOrden.save()
-    elif ordenEstado.estado == True:
+    elif ordenEstado.estado == True and mesaOrden.disponible == True:
         ordenEstado.estado = False
         mesaOrden.disponible = False
         print(ordenEstado.mesa.disponible)
