@@ -12,11 +12,15 @@
         {%csrf_token%}
         {{form.as_p}}
 
+
+
         {%if mesasDisponibles %}
             <button type="submit">Guardar Orden</button>
         {%else%}
             <button type="button" onclick="history.back();">Volver Atras</button>                
         {%endif%}
+        
+
 
     </form>
     

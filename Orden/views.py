@@ -58,13 +58,18 @@ def listaOrdenes(request):
 
 def editarOrden(request, id):
     ordenEditar = Orden.objects.get(pk=id)
+    mesaOrden = Mesa.objects.get(pk = ordenEditar.mesa.id)
+    mesaOrden.disponible = True
+    mesaOrden.save()
+    mesasDisponibles = Mesa.objects.filter(disponible = True).exists()
 
     if request.method == 'GET':
         formEditar = ordenForm(instance=ordenEditar)
 
         contextoGet = {
             'form' : formEditar,
-            'mensaje' : 'Editar orden'
+            'mensaje' : 'Editar orden',
+            'mesasDisponibles' : mesasDisponibles
         }
 
         return render(request, 'Orden/formOrden.html', contextoGet)
@@ -74,6 +79,9 @@ def editarOrden(request, id):
 
         if formGuardar.is_valid():
             formGuardar.save()
+            mesaOrden.disponible = False
+            mesaOrden.save()
+
             return redirect('listaOrdenes')
         else:
             return render(request, 'Orden/formOrden.html',

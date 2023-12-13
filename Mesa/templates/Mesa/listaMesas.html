@@ -6,6 +6,10 @@
     <title>Lista de Mesas</title>
 </head>
 <body>
+    <a href=" {% url 'homeMesa' %} ">
+        <button>Volver al Home</button>
+    </a>
+    <br><br>
     <a href="{%url 'mesaNueva'%}">
         <button>Crear Nueva Mesa</button>
     </a>
@@ -16,7 +20,6 @@
             <p>
                 Numero de mesa: {{mesa.id}} <br>
                 Cantidad de cubiertos: {{mesa.cantCubiertos}} <br>
-                Disponible: {{mesa.disponible}}
             </p>
             <a href=" {% url 'editarMesa' mesa.id %} ">
                 <button>Editar Mesa</button>
@@ -34,7 +37,6 @@
             <p>
                 Numero de mesa: {{mesa.id}} <br>
                 Cantidad de cubiertos: {{mesa.cantCubiertos}} <br>
-                Disponible: {{mesa.disponible}}
             </p>
             <a href=" {% url 'editarMesa' mesa.id %} ">
                 <button>Editar Mesa</button>
